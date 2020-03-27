@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{ margin: 0; padding:0;}
+        li{ list-style: none;}
+        #nav{ width:100%; height: 40px; background: #01204f; margin-top: 100px;}
+        #nav ul{ width:1000px; height: 40px; margin: 0 auto; position: relative;}
+        #nav ul li{ height: 40px; padding: 0 10px; float: left; font:14px/40px '微软雅黑'; color:#fff; font-weight: bold; cursor: pointer; position: relative;}
+        #nav ul li.active{ background:#c00}
+        #nav ul div{ width:40px; height: 40px; position:absolute; background:#c00}
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        /* 
+            鼠标经过当前li时  要将当前的li的left值和width  通过动画形式 设置为div的目标值  使div进行动画效果
+        */
+        $(function(){
+            $('#nav ul li').hover(function(){
+                // 先获取鼠标经过的这个li的  left值和width值（带有padding的值）
+                var curL = $(this).position().left;//经过的li的left值  
+                var curW = $(this).innerWidth();//经过的li的width值
+                // curL 和  curW  就是div运动的目标值
+                $('#nav ul div').stop().animate({left:curL,width:curW})
+            },function(){
+                $('#nav ul div').stop().animate({left:$('.active').position().left,width:40})
+            })
+
+            $('#nav ul li').click(function(){
+                $(this).addClass('active').siblings('li').removeClass('active');
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <div></div>
+            <li class="active">☢ 首页</li>
+            <li>新闻</li>
+            <li>头条资讯</li>
+            <li>军事</li>
+            <li>财经</li>
+            <li>体育</li>
+            <li>互联网</li>
+            <li>影视娱乐</li>
+            <li>游戏</li>
+            <li>动漫</li>
+            <li>读书</li>
+            <li>女人时尚</li>
+        </ul>
+    </div>
+</body>
+</html>

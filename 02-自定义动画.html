@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{ width:100px; height: 100px; background:red;}
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        /* 
+            jq的自定义动画  $().animate({运动的属性和目标值},动画持续时间,easing,callback(回调函数))
+        */
+
+        $(function(){
+            // 基本动画
+            // $('#box').click(function(){
+            //     $(this).animate({width:500},1000,function(){
+            //         alert('执行完毕')
+            //     })
+            // })
+
+            // 累加  在运动的目标值  作为  表达式  来做累加计算
+            // $('#box').click(function(){
+            //     $(this).animate({width:'+=10'})
+            // })
+            // $('#box').animate({width:'+=10'})
+
+            // 多属性同时变化 注意：在运动中  颜色是无法变化的
+            // $('#box').click(function(){
+            //     $(this).animate({width:500,height:400,opacity:.5},1000)
+            // })
+
+            // 先变宽 再变高 ---链式运动
+            $('#box').click(function(){
+                $(this).animate({width:300},500).animate({height:500},1000)
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

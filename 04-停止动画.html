@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{ width:100px; height: 100px; background:red;}
+    </style>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        /* 
+            停止动画
+            $().stop(clearQueue,gotoEnd)  参数时两个布尔值  默认都为false
+            clearQueue：清空动画队列--- 当动画停止时，是否停止后续的所有动画队列中的动画  true动画队列中的后续动画都不在执行  false值停止当前动画
+            gotoEnd: 跳转到结尾---  当动画停止时，是否立即到达动画目标值  true立即到达  false停在当前值
+        */
+
+        $(function(){
+            $('#start').click(function(){
+                $('div').animate({width:500},2000)
+                        .animate({height:500},2000);
+            })
+
+            $('#stop').click(function(){
+                // $('div').stop(false,false);//相对于 $('div').stop() 宽停止在当前值，高度继续执行变化到500
+                // $('div').stop(true,true);//宽在停止时直接跳到500，高度动画不再执行
+                //$('div').stop(true,false);//宽停止在当前值，高度动画不再执行
+                // $('div').stop(false,true);//宽在停止时直接跳到500，高度继续执行变化到500
+            })
+            $('#finish').click(function(){
+                $('div').finish();//停止动画 并且直接跳转到所有动画队列执行完成时的效果  jq的低版本不支持
+            })
+        })
+    </script>
+</head>
+<body>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <button id="finish">finish</button>
+    <div></div>
+</body>
+</html>
